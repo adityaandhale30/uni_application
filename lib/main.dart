@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:git_trial/Views/splash_screen.dart';
+import 'Views/splash_screen.dart';
+
 
 
 void main() {

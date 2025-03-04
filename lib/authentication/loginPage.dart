@@ -1,10 +1,10 @@
 //import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:git_trial/bottomnavigationbar_custom.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Views/homescreen/home_screen.dart';
+import '../bottomnavigationbar_custom.dart';
 import 'signUpPage.dart';
 
 

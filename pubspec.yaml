@@ -7,8 +7,15 @@ environment:
   sdk: ^3.6.1
 
 dependencies:
+  fl_chart: ^0.70.2
   flutter:
     sdk: flutter
+  gap: ^3.0.1
+  get: ^4.7.2
+  google_fonts: ^6.2.1
+  persistent_bottom_nav_bar: ^6.2.1
+  pie_chart: ^5.4.0
+  syncfusion_flutter_pdfviewer: ^28.2.9
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +24,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
+    - assets/homeAssets/
+    # - assets/images/
+    # - assets/icons/
+    # - assets/fonts/
