@@ -89,12 +89,10 @@ JobsListPage({super.key});
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Row(
           children: [
-            
-            const SizedBox(
-              width: 10,
-            ),
+
             Text(
               'Internship',
               style: GoogleFonts.imprima(color: Colors.white),
@@ -170,11 +168,27 @@ JobsListPage({super.key});
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text(
-                            'View Details',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Theme.of(context).primaryColor,
+                          GestureDetector(
+                            child: Container(
+                              height: 40,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                color : Colors.blue.shade500,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children:[
+                                  Text(
+                                  'Apply Now',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+
+                                ],
+                              ),
                             ),
                           ),
                           Container(
