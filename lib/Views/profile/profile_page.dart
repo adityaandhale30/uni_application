@@ -9,7 +9,6 @@ import 'package:uni_app/Views/profile/virtualcard.dart';
 import 'package:uni_app/authentication/sharedPreferences.dart';
 import 'package:uni_app/authentication/sqfliteController.dart';
 
-
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -71,20 +70,21 @@ class _MainProfilePage extends State<ProfilePage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(50),
                 child: Image.network(
-                  profileData["profileUrl"] ?? "",
+                  profileData["profileUrl"] ??
+                      "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png",
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             const SizedBox(height: 15),
             Text(
-              profileData["name"] ?? "",
+              profileData["name"] ?? "Student Name",
               style:
                   GoogleFonts.jost(fontSize: 24, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 10),
             Text(
-              profileData["email"] ?? "",
+              profileData["email"] ?? "studentemail@gmail.com",
               style: GoogleFonts.mulish(
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
@@ -129,6 +129,7 @@ class _MainProfilePage extends State<ProfilePage> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: Colors.white,
                 title: const Text("Logout Confirmation"),
                 content: const Text("Are you sure you want to log out?"),
                 actions: [
@@ -136,7 +137,10 @@ class _MainProfilePage extends State<ProfilePage> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text("Cancel"),
+                    style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(Colors.red)),
+                    child: const Text("Cancel",
+                        style: TextStyle(color: Colors.white)),
                   ),
                   TextButton(
                     onPressed: () {
@@ -145,7 +149,10 @@ class _MainProfilePage extends State<ProfilePage> {
                           isLogin: false, studentID: "");
                       //_signOut();
                     },
-                    child: const Text("Confirm"),
+                    style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(Colors.blue)),
+                    child: const Text("Confirm",
+                        style: TextStyle(color: Colors.white)),
                   ),
                 ],
               );

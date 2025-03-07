@@ -79,9 +79,8 @@ class _MainProfilePage extends State<VirtualCardPage> {
                           child: Center(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(45),
-                              child: Image.network(
-                                collegeData["image"] ??
-                                    "", // Provide a default value if image is null
+                              child: Image.asset(
+                                "assets/SKN-Logo.png", // Provide a default value if image is null
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {
                                   return const Icon(Icons
@@ -95,7 +94,7 @@ class _MainProfilePage extends State<VirtualCardPage> {
                         Expanded(
                           child: Text(
                             collegeData["collegeName"] ??
-                                "", // Provide a default value if collegeName is null
+                                "Smt.Kashibai Navale College Of Engineering , Pune .", // Provide a default value if collegeName is null
                             style: GoogleFonts.jost(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
@@ -106,8 +105,7 @@ class _MainProfilePage extends State<VirtualCardPage> {
                       ],
                     ),
                     Text(
-                      collegeData["address"] ??
-                          "", // Provide a default value if address is null
+                      "S.No.44/1,Vadgaon(Bk.),Off.Sinhgad Road,Pune-411041", // Provide a default value if address is null
                       style: GoogleFonts.mulish(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -121,9 +119,9 @@ class _MainProfilePage extends State<VirtualCardPage> {
                         borderRadius: BorderRadius.circular(15),
                         child: Image.network(
                           profileData["profileUrl"] ??
-                              "", // Provide a default value if profileUrl is null
-                          height: 120,
-                          width: 120,
+                              "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png", // Provide a default value if profileUrl is null
+                          height: 220,
+                          width: 220,
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return const Icon(Icons
@@ -135,7 +133,7 @@ class _MainProfilePage extends State<VirtualCardPage> {
                     Center(
                       child: Text(
                         profileData["name"] ??
-                            "", // Provide a default value if name is null
+                            "Yashodip Raju Thakare", // Provide a default value if name is null
                         style: GoogleFonts.mulish(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
@@ -146,7 +144,7 @@ class _MainProfilePage extends State<VirtualCardPage> {
                     const SizedBox(height: 10),
                     // Student Details (PRN, Class)
                     Text(
-                      "Student Id : ${Authservice.studentID ?? ""}", // Provide a default value if studentID is null
+                      "Student Id : ${Authservice.studentID ?? "72294653K"}", // Provide a default value if studentID is null
                       style: GoogleFonts.mulish(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
@@ -154,24 +152,21 @@ class _MainProfilePage extends State<VirtualCardPage> {
                       ),
                     ),
                     Text(
-                      "Class : ${profileData["department"] ?? ""}", // Provide a default value if department is null
+                      "Department : ${profileData["department"] ?? "ENTC"}", // Provide a default value if department is null
                       style: GoogleFonts.mulish(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 10),
-
                     // Address Section
                     Text(
-                      "Atul Nagar Near Raghavdas Vidyalay Warje Pune 411058",
+                      "Address : ${profileData["address"] ?? "Atul Nagar Near Raghavdas Vidyalay\n                Warje, Pune , 411058."}",
                       style: GoogleFonts.mulish(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
                         color: Colors.black,
                       ),
-                      textAlign: TextAlign.center,
                     )
                   ],
                 ),
@@ -234,7 +229,7 @@ class _MainProfilePage extends State<VirtualCardPage> {
                       height: 15,
                     ),
                     Text(
-                      "Blood Group : ${profileData["bloodGroup"] ?? ""}",
+                      "Blood Group : ${profileData["bloodGroup"] ?? "A+"}",
                       style: GoogleFonts.mulish(
                         fontSize: 15,
                         fontWeight: FontWeight.w800,
@@ -245,7 +240,7 @@ class _MainProfilePage extends State<VirtualCardPage> {
                       height: 10,
                     ),
                     Text(
-                      "Date of Birth : ${profileData["dob"] ?? ""}",
+                      "Date of Birth : ${profileData["dob"] ?? "10/10/2003"}",
                       style: GoogleFonts.mulish(
                         fontSize: 15,
                         fontWeight: FontWeight.w800,
@@ -254,7 +249,7 @@ class _MainProfilePage extends State<VirtualCardPage> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      "Contact No : ${profileData["contactNo"] ?? ""}",
+                      "Contact No : +91-${profileData["contactNo"] ?? "8544735787"}",
                       style: GoogleFonts.mulish(
                         fontSize: 15,
                         fontWeight: FontWeight.w800,
@@ -265,7 +260,7 @@ class _MainProfilePage extends State<VirtualCardPage> {
                       height: 10,
                     ),
                     Text(
-                      "Emergency Contact name : ${profileData["emergencyContactName"] ?? ""}",
+                      "Emergency Contact name : ${profileData["emergencyContactName"] ?? "Relative's Name"}",
                       style: GoogleFonts.mulish(
                         fontSize: 15,
                         fontWeight: FontWeight.w800,
@@ -276,7 +271,7 @@ class _MainProfilePage extends State<VirtualCardPage> {
                       height: 10,
                     ),
                     Text(
-                      "Emergency Contact No : ${profileData["emergencyContactNo"] ?? ""}",
+                      "Emergency Contact No : +91-${profileData["emergencyContactNo"] ?? "8877656789"}",
                       style: GoogleFonts.mulish(
                         fontSize: 15,
                         fontWeight: FontWeight.w800,
@@ -302,7 +297,8 @@ class _MainProfilePage extends State<VirtualCardPage> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: Image.network(
-                                  profileData["signatureUrl"] ?? "",
+                                  profileData["signatureUrl"] ??
+                                      "https://veri-sign.web.app/assets/images/placeholder.jpg",
                                   fit: BoxFit.cover,
                                   height: double.infinity,
                                   width: double.infinity,

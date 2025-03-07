@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,68 +16,171 @@ class _MainTermsConditionsPage extends State<StatefulWidget> {
       backgroundColor: const Color.fromRGBO(245, 249, 255, 1),
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
-
-        // arrow back icon
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back,color: Colors.white,)),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+        ),
         title: Text(
           "Terms & Conditions",
           style: GoogleFonts.jost(
             fontSize: 21,
             fontWeight: FontWeight.w600,
-            color: Colors.white
+            color: Colors.white,
           ),
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 20),
-              child: Text(
-                "Condition & Attending",
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 10),
+          child: Column(
+            spacing: 10,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              Text(
+                "Introduction",
                 style: GoogleFonts.jost(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 20),
-              child: Text(
-                "1] Acceptable Use and Compliance: By using Online, you consent to the collection, processing, and limited sharing of your information with third parties necessary for service improvement and maintenance. Personal information will not be used for marketing purposes unless you provide explicit consent. For more details, please review our complete Privacy Policy.\n\n2]Privacy and Data Usage: We value your privacy and handle your data in accordance with our Privacy Policy. By using [Your VoIP Software Name], you consent to the collection, processing, and limited sharing of your information with third parties necessary for service improvement and maintenance. Personal information will not be used for marketing purposes unless you provide explicit consent. For more details, please review our complete Privacy Policy.",
+              Text(
+                "Welcome to [Your Platform Name], a platform designed to facilitate online learning and collaboration. By using our platform, you agree to be bound by these Terms and Conditions, which govern your use of our services.",
                 style: GoogleFonts.mulish(
                   fontSize: 15,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 20),
-              child: Text(
-                "Terms & Use",
-                style: GoogleFonts.jost(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+              ExpansionTile(
+                title: Text(
+                  "1. Acceptable Use",
+                  style: GoogleFonts.jost(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
+                children: [
+                  Text(
+                    "You agree to use our platform for lawful purposes only. You must not use our platform to transmit or store any material that is unlawful, harassing, libelous, abusive, threatening, or obscene.",
+                    style: GoogleFonts.mulish(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 20),
-              child: Text(
-                "Ut proverbia non nulla veriora sint quam vestra dogmata. Tamen aberramus a proposito, et, ne longius, prorsus, inquam, Piso, si ista mala sunt, placet. Omnes enim iucundum motum, quo sensus hilaretur. Cum id fugiunt, re eadem defendunt, quae Peripatetici, verba. Quibusnam praeteritis? Portenta haec esse dicit, quidem hactenus; Si id dicis, vicimus. Qui ita affectus, beatum esse numquam probabis; Igitur neque stultorum quisquam beatus neque sapientium non beatus.\n\n"
-                "Dicam, inquam, et quidem discendi causa magis, quam quo te aut Epicurum reprehensum velim. Dolor ergo, id est summum malum, metuetur semper, etiamsi non ader.",
-                style: GoogleFonts.mulish(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
+              ExpansionTile(
+                title: Text(
+                  "2. User Accounts",
+                  style: GoogleFonts.jost(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
+                children: [
+                  Text(
+                    "You are responsible for maintaining the confidentiality of your account and password. You agree to notify us immediately of any unauthorized use of your account or password.",
+                    style: GoogleFonts.mulish(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+              ExpansionTile(
+                title: Text(
+                  "3. Intellectual Property",
+                  style: GoogleFonts.jost(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                children: [
+                  Text(
+                    "All content on our platform is the property of [Your Platform Name] or its licensors. You agree not to reproduce, distribute, or display any content without our prior written consent.",
+                    style: GoogleFonts.mulish(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              ExpansionTile(
+                title: Text(
+                  "4. Disclaimer of Warranties",
+                  style: GoogleFonts.jost(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                children: [
+                  Text(
+                    "Our platform is provided on an 'as is' and 'as available' basis. We disclaim all warranties, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.",
+                    style: GoogleFonts.mulish(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              ExpansionTile(
+                title: Text(
+                  "5. Limitation of Liability",
+                  style: GoogleFonts.jost(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                children: [
+                  Text(
+                    "In no event shall we be liable for any damages, including but not limited to incidental, consequential, or punitive damages, arising out of the use of our platform.",
+                    style: GoogleFonts.mulish(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              ExpansionTile(
+                title: Text(
+                  "6. Governing Law",
+                  style: GoogleFonts.jost(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                children: [
+                  Text(
+                    "These Terms and Conditions shall be governed by and construed in accordance with the laws of India.",
+                    style: GoogleFonts.mulish(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              ExpansionTile(
+                title: Text(
+                  "7. Changes to Terms and Conditions",
+                  style: GoogleFonts.jost(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                children: [
+                  Text(
+                    "We reserve the right to modify these Terms and Conditions at any time. Your continued use of our platform shall be deemed acceptance.",
+                    style: GoogleFonts.mulish(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -8,37 +8,31 @@ class PreviousStudentConnection extends StatelessWidget {
       'name': 'Aditya Andhale',
       'batch': '2020',
       'profession': 'Mobile Developer',
-      'imageUrl': 'https://via.placeholder.com/150',
     },
     {
-      'name': 'Jane Doe',
+      'name': 'Yash Thakare',
       'batch': '2018',
-      'profession': 'Architect',
-      'imageUrl': 'https://via.placeholder.com/150',
+      'profession': 'Cloud Engineer',
     },
     {
-      'name': 'John Smith',
+      'name': 'Naresh Shewale',
       'batch': '2019',
-      'profession': 'Doctor',
-      'imageUrl': 'https://via.placeholder.com/150',
+      'profession': 'Cloud Engineer',
     },
     {
-      'name': 'Alice Johnson',
+      'name': 'Akash Thapa',
       'batch': '2021',
-      'profession': 'Artist',
-      'imageUrl': 'https://via.placeholder.com/150',
+      'profession': 'Civil Engineer',
     },
     {
       'name': 'Rajesh Kumar',
       'batch': '2017',
       'profession': 'Civil Engineer',
-      'imageUrl': 'https://via.placeholder.com/150',
     },
     {
-      'name': 'Emily Davis',
+      'name': 'Umesh Patil',
       'batch': '2020',
-      'profession': 'Teacher',
-      'imageUrl': 'https://via.placeholder.com/150',
+      'profession': 'Pri. Teacher',
     },
   ];
 
@@ -47,13 +41,19 @@ class PreviousStudentConnection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(245, 249, 255, 1),
       appBar: AppBar(
-        title: const Text('Alumni Network'),
-        backgroundColor: Colors.teal,
+        title: const Text(
+          'Alumni Network',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.blue,
         elevation: 5,
         actions: [
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.search, color: Colors.white),
             onPressed: () {
               // Implement search functionality here
             },
@@ -78,6 +78,7 @@ class PreviousStudentConnection extends StatelessWidget {
               },
               child: Card(
                 elevation: 4,
+                color: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -88,7 +89,8 @@ class PreviousStudentConnection extends StatelessWidget {
                       tag: alumni['name']!,
                       child: CircleAvatar(
                         radius: 45,
-                        backgroundImage: NetworkImage(alumni['imageUrl']!),
+                        backgroundImage: NetworkImage(alumni['imageUrl'] ??
+                            "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -134,7 +136,8 @@ class AlumniDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(alumni['name']!), backgroundColor: Colors.teal),
+      appBar:
+          AppBar(title: Text(alumni['name']!), backgroundColor: Colors.teal),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -167,16 +170,6 @@ class AlumniDetailPage extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
