@@ -1,0 +1,327 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:uni_app/authentication/StudentController.dart';
+import 'package:uni_app/authentication/authService.dart';
+import 'package:uni_app/authentication/sqfliteController.dart';
+
+Map<String, dynamic> collegeData = {};
+
+void fetchCollegeDetails() async {
+  await Studentcontroller().fetchCollegeDetail().then((value) {
+    collegeData.addAll(value);
+  });
+}
+
+class VirtualCardPage extends StatefulWidget {
+  const VirtualCardPage({super.key});
+
+  @override
+  State<VirtualCardPage> createState() => _MainProfilePage();
+}
+
+class _MainProfilePage extends State<VirtualCardPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        title: Text(
+          "Virtual ID Card",
+          style: GoogleFonts.jost(
+              fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Card 1 - Basic Information
+            FittedBox(
+              child: Container(
+                height: MediaQuery.of(context).size.height - 350,
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Profile Image and Name
+                    Row(
+                      children: [
+                        Container(
+                          width: 90,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(),
+                          ),
+                          child: Center(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(45),
+                              child: Image.asset(
+                                "assets/SKN-Logo.png", // Provide a default value if image is null
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(Icons
+                                      .error); // Show an error icon if image fails to load
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        Expanded(
+                          child: Text(
+                            collegeData["collegeName"] ??
+                                "Smt.Kashibai Navale College Of Engineering , Pune .", // Provide a default value if collegeName is null
+                            style: GoogleFonts.jost(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    Text(
+                      "S.No.44/1,Vadgaon(Bk.),Off.Sinhgad Road,Pune-411041", // Provide a default value if address is null
+                      style: GoogleFonts.mulish(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                    Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.network(
+                          profileData["profileUrl"] ??
+                              "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png", // Provide a default value if profileUrl is null
+                          height: 220,
+                          width: 220,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Icon(Icons
+                                .error); // Show an error icon if image fails to load
+                          },
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        profileData["name"] ??
+                            "Yashodip Raju Thakare", // Provide a default value if name is null
+                        style: GoogleFonts.mulish(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    // Student Details (PRN, Class)
+                    Text(
+                      "Student Id : ${Authservice.studentID ?? "72294653K"}", // Provide a default value if studentID is null
+                      style: GoogleFonts.mulish(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      "Department : ${profileData["department"] ?? "ENTC"}", // Provide a default value if department is null
+                      style: GoogleFonts.mulish(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                      ),
+                    ),
+                    // Address Section
+                    Text(
+                      "Address : ${profileData["address"] ?? "Atul Nagar Near Raghavdas Vidyalay\n                Warje, Pune , 411058."}",
+                      style: GoogleFonts.mulish(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            // Card 2 - Instructions and Personal Details
+            FittedBox(
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                height: MediaQuery.of(context).size.height - 350,
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all()),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Instructions :",
+                      style: GoogleFonts.jost(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "1. This card must be presented on demand.",
+                      style: GoogleFonts.mulish(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      "2. This card is not transferable.",
+                      style: GoogleFonts.mulish(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      "3. The above information is true as on.",
+                      style: GoogleFonts.mulish(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    const Divider(
+                      thickness: 2,
+                      color: Colors.black,
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "Blood Group : ${profileData["bloodGroup"] ?? "A+"}",
+                      style: GoogleFonts.mulish(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Date of Birth : ${profileData["dob"] ?? "10/10/2003"}",
+                      style: GoogleFonts.mulish(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      "Contact No : +91-${profileData["contactNo"] ?? "8544735787"}",
+                      style: GoogleFonts.mulish(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Emergency Contact name : ${profileData["emergencyContactName"] ?? "Relative's Name"}",
+                      style: GoogleFonts.mulish(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Emergency Contact No : +91-${profileData["emergencyContactNo"] ?? "8877656789"}",
+                      style: GoogleFonts.mulish(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const SizedBox(),
+                        Column(
+                          children: [
+                            Container(
+                              height: 70,
+                              width: 130,
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  profileData["signatureUrl"] ??
+                                      "https://veri-sign.web.app/assets/images/placeholder.jpg",
+                                  fit: BoxFit.cover,
+                                  height: double.infinity,
+                                  width: double.infinity,
+                                ),
+                              ),
+                            ),
+                            Text("Signature",
+                                style: GoogleFonts.mulish(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.black,
+                                ))
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

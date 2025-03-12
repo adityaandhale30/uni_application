@@ -12,8 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -42,7 +40,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to( ()=>PdfviewerCustom());
+          Get.to(() => PdfviewerCustom());
         },
         child: const Icon(Icons.add),
       ),
@@ -50,22 +48,18 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildSliverAppBar() {
-    return  SliverAppBar(
+    return SliverAppBar(
       stretchTriggerOffset: 200,
       shadowColor: const Color.fromARGB(255, 249, 66, 66),
-      shape: const Border(
-       
-      ),
+      shape: const Border(),
       floating: true,
       stretch: true,
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.blue,
       centerTitle: true,
       title: Text(
         "Uni App",
         style: GoogleFonts.roboto(
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
-        ),
+            fontSize: 24, fontWeight: FontWeight.w600, color: Colors.white),
       ),
     );
   }
@@ -75,19 +69,17 @@ class HomeTabCard extends StatelessWidget {
   final String imagePath;
   final String name;
 
-
   const HomeTabCard({
     super.key,
     required this.imagePath,
     required this.name,
-  
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to( ()=>JobsListPage());
+        Get.to(() => JobsListPage());
       },
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -118,10 +110,10 @@ class HomeTabCard extends StatelessWidget {
             const Gap(16),
             Text(
               name,
-              style:const TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color:  Color.fromRGBO(25, 33, 38, 1),
+                color: Color.fromRGBO(25, 33, 38, 1),
               ),
             ),
           ],
