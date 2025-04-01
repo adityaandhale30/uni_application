@@ -20,7 +20,8 @@ class StudentProfilePage extends StatelessWidget {
             Center(
               child: CircleAvatar(
                 radius: 60,
-                backgroundImage: AssetImage('assets/student_profile.jpg'), // Replace with your image
+                backgroundImage: AssetImage(
+                    'assets/student_profile.jpg'), // Replace with your image
                 backgroundColor: Colors.teal.withOpacity(0.1),
               ),
             ),
