@@ -30,8 +30,7 @@ class Authservice {
   }
 
   void setAdminID(String email) {
-   
-    adminID ="";
+    adminID = "";
     List<String> splitEmail = email.split("@");
     RegExp regExp = RegExp(r'\d+');
     adminID = regExp.firstMatch(splitEmail[0])?.group(0) ?? "";

@@ -7,8 +7,7 @@ Database? database;
 Map<String, dynamic> profileData = {};
 
 class SqfliteController {
-  Future<void> fetchStudentData(String id) 
-  async {
+  Future<void> fetchStudentData(String id) async {
     await Studentcontroller().fetchStudentdetails(id).then((value) {
       profileData = value;
     });

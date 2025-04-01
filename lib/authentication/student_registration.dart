@@ -1,5 +1,3 @@
-
-
 class RegistrationModel {
   String? profileUrl;
   String? name;

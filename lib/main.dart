@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Views/splash_screen.dart';
 
-
-
 void main() {
   runApp(const MainApp());
 }

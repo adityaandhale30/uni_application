@@ -15,7 +15,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-         resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
@@ -220,7 +220,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.of(context).pop(MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
+                          builder: (context) => LoginScreen(
+                            role: "student",
+                          ),
                         ));
                       },
                       child: Text(
@@ -257,7 +259,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).pop(MaterialPageRoute(
-                                builder: (context) => const LoginScreen()));
+                                builder: (context) => LoginScreen(
+                                      role: "student",
+                                    )));
                           },
                           child: Text(
                             "Log in",

@@ -1,207 +1,204 @@
-//import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../Views/homescreen/home_screen.dart';
-import '../bottomnavigationbar_custom.dart';
+import 'package:uni_app/Admin/adminBottomNavigation.dart';
+import 'package:uni_app/Views/homescreen/home_screen.dart';
+import 'package:uni_app/Views/profile/profile_page.dart';
+import 'package:uni_app/bottomnavigationbar_custom.dart';
 import 'signUpPage.dart';
 
+class LoginScreen extends StatelessWidget {
+  final String role;
+  LoginScreen({super.key, required this.role});
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final RxBool isPasswordVisible = false.obs;
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
+  void _handleLogin() {
+    if (role == "student") {
+      Get.off(() => const BottomnavigationbarCustom(),
+          transition: Transition.fadeIn, duration: const Duration(seconds: 1));
+    } else {
+      Get.off(() => const AdminBottomnavigationbarCustom(),
+          transition: Transition.fadeIn, duration: const Duration(seconds: 1));
+    }
+  }
 
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Stack(children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      resizeToAvoidBottomInset: false
+      ,
+      body: Stack(
+        children: [
+          // Background Gradient
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFF3A7BD5), Color(0xFF00D2FF)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
+
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(height: 70),
-                  Center(child: Image.asset("assets/splash.png")),
+                  // App Logo
+                  Image.asset("assets/splash.png", height: 120),
                   const SizedBox(height: 20),
+
+                  // Login Title
                   Text(
                     "Log In",
                     style: GoogleFonts.ptSans(
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
+                      color: Colors.white,
                     ),
                   ),
                   Text(
-                    "please sign in to continue",
+                    "Please sign in to continue",
                     style: GoogleFonts.ptSans(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
+                      color: Colors.white70,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
+                  const SizedBox(height: 20),
+
+                  // Email TextField
+                  _buildTextField(
+                    controller: emailController,
+                    icon: Icons.email,
+                    hintText: "Email",
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      children: [
-                        TextField(
-                          //controller: nameController,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.email),
-                            hintText: "Email",
-                            hintStyle: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              color: Color.fromRGBO(117, 115, 115, 1),
-                            ),
+                  const SizedBox(height: 15),
 
-                            ///WHEN WE CLICK ON TEXTFIELD IT WILL SHOW FOUSEDBORDER
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Color.fromRGBO(0, 139, 148, 1),
-                              ),
-                            ),
+                  // Password TextField
+                  Obx(() => _buildTextField(
+                        controller: passwordController,
+                        icon: Icons.lock,
+                        hintText: "Password",
+                        isPassword: true,
+                        isPasswordVisible: isPasswordVisible,
+                      )),
+                  const SizedBox(height: 15),
 
-                            ///USED WHEN WE HAVE TO GIVE BORDER TO TEXTFIELD
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Colors.purpleAccent,
-                              ),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 18,
-                        ),
-                        TextField(
-                          //controller: nameController,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock),
-                            suffixIcon:
-                                const Icon(Icons.remove_red_eye_outlined),
-                            hintText: "Password",
-                            hintStyle: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              color: Color.fromRGBO(117, 115, 115, 1),
-                            ),
-
-                            ///WHEN WE CLICK ON TEXTFIELD IT WILL SHOW FOUSEDBORDER
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Color.fromRGBO(0, 139, 148, 1),
-                              ),
-                            ),
-
-                            ///USED WHEN WE HAVE TO GIVE BORDER TO TEXTFIELD
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Colors.purpleAccent,
-                              ),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Forgat Password",
-                        style: GoogleFonts.ptSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: const Color.fromRGBO(41, 166, 215, 1),
-                        ),
+                  // Forgot Password
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "Forgot Password?",
+                      style: GoogleFonts.ptSans(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
                       ),
-                    ],
+                    ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 20),
+
+                  // Login Button
                   GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) =>
-                              const BottomnavigationbarCustom()));
-                    },
+                    onTap: _handleLogin,
                     child: Container(
-                      height: 60,
-                      width: MediaQuery.sizeOf(context).width,
+                      height: 55,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: const Color.fromRGBO(41, 166, 215, 1),
+                        color: Colors.white.withOpacity(0.9),
                       ),
                       child: Center(
                         child: Text(
                           "Log in",
                           style: GoogleFonts.ptSans(
-                            fontSize: 16,
+                            fontSize: 18,
                             fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                            color: const Color(0xFF3A7BD5),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  const SizedBox(height: 20),
+
+                  // Sign Up Link
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don’t have an account?",
+                        style: GoogleFonts.alatsi(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () => Get.to(() => const SignUpScreen(),
+                            transition: Transition.rightToLeft),
+                        child: Text(
+                          "Sign up",
+                          style: GoogleFonts.alatsi(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                      width: 300,
-                      height: 40,
-                      //color: Colors.amber,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            "Don’t have an account?",
-                            style: GoogleFonts.alatsi(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                                decoration: TextDecoration.none),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const SignUpScreen()));
-                            },
-                            child: Text(
-                              "sign up",
-                              style: GoogleFonts.alatsi(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: const Color.fromRGBO(41, 166, 215, 1),
-                                  decoration: TextDecoration.none),
-                            ),
-                          ),
-                        ],
-                      )),
                 ],
               ),
-            ]),
+            ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required IconData icon,
+    required String hintText,
+    bool isPassword = false,
+    RxBool? isPasswordVisible,
+  }) {
+    return TextField(
+      controller: controller,
+      obscureText: isPassword && !(isPasswordVisible?.value ?? true),
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.9),
+        prefixIcon: Icon(icon, color: Colors.blue),
+        suffixIcon: isPassword
+            ? IconButton(
+                icon: Icon(
+                  (isPasswordVisible?.value ?? false)
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: Colors.blue,
+                ),
+                onPressed: () => isPasswordVisible?.toggle(),
+              )
+            : null,
+        hintText: hintText,
+        hintStyle: GoogleFonts.ptSans(
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+          color: Colors.grey.shade600,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
         ),
       ),
     );

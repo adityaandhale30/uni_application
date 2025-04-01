@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uni_app/authentication/selectionScreen.dart';
 
-
-import '../authentication/loginPage.dart';
-
-
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.off(() => const SelectionScreen());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +33,8 @@ class SplashScreen extends StatelessWidget {
             ],
           ),
         ),
-        child: GestureDetector(
-          onTap: () {
-            Get.off(() => const LoginScreen());
-          },
-          child: Center(
-            child: Image.asset("assets/splash.png"),
-          ),
+        child: Center(
+          child: Image.asset("assets/splash.png"),
         ),
       ),
     );

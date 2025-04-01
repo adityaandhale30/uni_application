@@ -1,13 +1,19 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uni_app/Views/profile/aboutUs.dart';
 import 'package:uni_app/Views/profile/edit_profile.dart';
 import 'package:uni_app/Views/profile/termsAndCondition.dart';
 import 'package:uni_app/Views/profile/virtualcard.dart';
+import 'package:uni_app/Views/splash_screen.dart';
+import 'package:uni_app/authentication/loginPage.dart';
 import 'package:uni_app/authentication/sharedPreferences.dart';
 import 'package:uni_app/authentication/sqfliteController.dart';
+
+import '../homescreen/pdfViwer_custom.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -28,6 +34,12 @@ class _MainProfilePage extends State<ProfilePage> {
 
   Widget profilePage() {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => PdfviewerCustom());
+        },
+        child: const Icon(Icons.add),
+      ),
       backgroundColor: const Color.fromRGBO(245, 249, 255, 1),
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
@@ -135,7 +147,7 @@ class _MainProfilePage extends State<ProfilePage> {
                 actions: [
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      Get.to(()=>SplashScreen());
                     },
                     style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(Colors.red)),
