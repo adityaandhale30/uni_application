@@ -121,20 +121,77 @@ List<HomeTabModel> hometab = [
 ];
 
 final List<Map<String, String>> carouselItems = [
-  {
-    "imagePath": "assets/homeAssets/caro1.jpg",
-    "title": "Exciting Job Openings",
-  },
-  {
-    "imagePath": "assets/homeAssets/caro1.jpg",
-    "title": "Internship Opportunities",
-  },
-  {
-    "imagePath": "assets/homeAssets/caro1.jpg",
-    "title": "Skill Development Courses",
-  },
-  {
-    "imagePath": "assets/homeAssets/caro1.jpg",
-    "title": "Networking Events",
-  },
+{
+"imagePath": "assets/homeAssets/job1.webp",
+"title": "International Jobs And Internships",
+"news": "New international job opportunities and internships are now open for applications worldwide.",
+"info": "Explore opportunities with top companies globally.",
+"startDate": "2025-04-01",
+"endDate": "2025-06-01",
+"url": "https://www.example.com/international-jobs",
+},
+{
+"imagePath": "assets/homeAssets/job3.jpeg",
+"title": "Hackathon Events",
+"news": "Join the upcoming global hackathons and showcase your skills. The top winners will receive exciting prizes!",
+"info": "Participate in competitive coding events and network with experts.",
+"startDate": "2025-04-10",
+"endDate": "2025-04-12",
+"url": "https://www.example.com/hackathon-events",
+},
+{
+"imagePath": "assets/homeAssets/caro1.jpg",
+"title": "Exciting Job Openings",
+"news": "Check out the latest job openings in various industries. Apply now to take your career to the next level!",
+"info": "New roles available in software development, marketing, and more.",
+"startDate": "2025-04-05",
+"endDate": "2025-05-15",
+"url": "https://www.example.com/job-openings",
+},
+{
+"imagePath": "assets/homeAssets/job2.png",
+"title": "Sports Events",
+"news": "Stay updated on the latest sports tournaments and matches happening globally.",
+"info": "Upcoming tournaments in football, cricket, and more.",
+"startDate": "2025-05-01",
+"endDate": "2025-06-15",
+"url": "https://www.example.com/sports-events",
+},
+// {
+// "imagePath": "assets/homeAssets/job4.jpg",
+// "title": "Startup Networking",
+// "news": "Meet industry leaders at startup networking events. A great opportunity for entrepreneurs!",
+// "info": "Network with startups, investors, and entrepreneurs.",
+// "startDate": "2025-04-20",
+// "endDate": "2025-04-25",
+// "url": "https://www.example.com/startup-networking",
+// },
+// {
+// "imagePath": "assets/homeAssets/job5.png",
+// "title": "Tech Conferences",
+// "news": "Attend global tech conferences to stay ahead of trends in AI, Cloud Computing, and more.",
+// "info": "Learn from top tech experts and share innovative ideas.",
+// "startDate": "2025-05-05",
+// "endDate": "2025-05-10",
+// "url": "https://www.example.com/tech-conferences",
+// },
+{
+"imagePath": "assets/homeAssets/job8.jpeg",
+"title": "Startup Job Fair",
+"news": "Find your next job at the startup job fair. Meet hiring companies and explore career opportunities.",
+"info": "Meet companies looking for fresh talent in the startup ecosystem.",
+"startDate": "2025-05-15",
+"endDate": "2025-05-20",
+"url": "https://www.example.com/startup-job-fair",
+},
+// {
+// "imagePath": "assets/homeAssets/job7.jpg",
+// "title": "Entrepreneurship Bootcamp",
+// "news": "Join the entrepreneurship bootcamp to turn your ideas into successful ventures.",
+// "info": "Workshops, mentorship, and hands-on experience for budding entrepreneurs.",
+// "startDate": "2025-06-01",
+// "endDate": "2025-06-05",
+// "url": "https://www.example.com/entrepreneurship-bootcamp",
+// },
 ];
+

@@ -51,7 +51,7 @@ final List<AlumniModel> alumniList = [
     name: 'Aditya Andhale',
     batch: '2020',
     profession: 'Mobile Developer',
-    imageUrl: 'https://via.placeholder.com/150',
+    imageUrl: "assets/homeAssets/alu2.jpeg",
     email: 'aditya@example.com',
     phone: '123-456-7890',
     linkedin: 'https://www.linkedin.com/in/aditya/',
@@ -66,14 +66,14 @@ final List<AlumniModel> alumniList = [
   AlumniModel(
     name: 'Yash Thakare',
     batch: '2018',
-    profession: 'Cloud Engineer',
-    imageUrl: 'https://via.placeholder.com/150',
+    profession: 'International Swimmer',
+    imageUrl: "assets/homeAssets/alu3.jpg",
     email: 'yash@example.com',
     phone: '123-456-7891',
     linkedin: 'https://www.linkedin.com/in/yash/',
     location: 'Mumbai, India',
-    skills: 'AWS, Azure, DevOps',
-    company: 'TechCorp',
+    skills: 'Swimming, Cycling',
+    company: 'Federation ',
     degree: 'M.Tech',
     social: 'https://twitter.com/yash',
     hobbies: 'Gaming, Travelling',
@@ -83,7 +83,7 @@ final List<AlumniModel> alumniList = [
     name: 'Naresh Shewale',
     batch: '2019',
     profession: 'Cloud Engineer',
-    imageUrl: 'https://via.placeholder.com/150',
+    imageUrl: "assets/homeAssets/alu1.jpeg",
     email: 'naresh@example.com',
     phone: '123-456-7892',
     linkedin: 'https://www.linkedin.com/in/naresh/',
@@ -99,7 +99,7 @@ final List<AlumniModel> alumniList = [
     name: 'Akash Thapa',
     batch: '2021',
     profession: 'Civil Engineer',
-    imageUrl: 'https://via.placeholder.com/150',
+    imageUrl: "assets/homeAssets/alu4.jpeg",
     email: 'akash@example.com',
     phone: '123-456-7893',
     linkedin: 'https://www.linkedin.com/in/akash/',
@@ -114,15 +114,15 @@ final List<AlumniModel> alumniList = [
   AlumniModel(
     name: 'Rajesh Kumar',
     batch: '2017',
-    profession: 'Civil Engineer',
-    imageUrl: 'https://via.placeholder.com/150',
+    profession: 'IAS Officer',
+    imageUrl: "assets/homeAssets/alu7.webp",
     email: 'rajesh@example.com',
     phone: '123-456-7894',
     linkedin: 'https://www.linkedin.com/in/rajesh/',
     location: 'Chennai, India',
     skills: 'Civil Engineering, Site Management',
-    company: 'InfraBuild',
-    degree: 'M.Tech',
+    company: 'Government of India',
+    degree: 'B.Tech',
     social: 'https://twitter.com/rajesh',
     hobbies: 'Gardening, Cycling',
     linkedinProfile: 'https://www.linkedin.com/in/rajesh/',
@@ -131,7 +131,7 @@ final List<AlumniModel> alumniList = [
     name: 'Umesh Patil',
     batch: '2020',
     profession: 'Primary Teacher',
-    imageUrl: 'https://via.placeholder.com/150',
+    imageUrl: "assets/homeAssets/alu6.webp",
     email: 'umesh@example.com',
     phone: '123-456-7895',
     linkedin: 'https://www.linkedin.com/in/umesh/',
@@ -159,30 +159,38 @@ final List<AlumniModel> alumniList = [
 
 
 
-
-
-// Assume that 'alumniList' is a global variable of type List<AlumniModel>
-// and AlumniModel contains properties: name, batch, profession, imageUrl, email, phone, linkedin, location, skills, company, degree, social, hobbies, linkedinProfile.
-
 class PreviousStudentConnection extends StatelessWidget {
   const PreviousStudentConnection({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: "Alumni Network".text.white.make(),
-        backgroundColor: Colors.teal,
-        elevation: 6,
-        actions: [
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.search, color: Colors.white),
-            onPressed: () {
-              // Implement search functionality
-            },
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60.0),
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF87CEEB), Color(0xFF00BFFF)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
-        ],
+          child: AppBar(
+            title: const Text('Alumni Network', style: TextStyle(color: Colors.white)),
+            backgroundColor: Colors.transparent,
+            elevation: 6,
+            actions: [
+              IconButton(
+                icon: const FaIcon(FontAwesomeIcons.search, color: Colors.white),
+                onPressed: () {
+                  // Implement search functionality
+                },
+              ),
+            ],
+          ),
+        ),
       ),
+      backgroundColor: Colors.white,
       body: LiquidPullToRefresh(
         onRefresh: () async {
           // Refresh logic here
@@ -206,52 +214,31 @@ class PreviousStudentConnection extends StatelessWidget {
                       builder: (context) => _buildAlumniDetail(alumni),
                     );
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Colors.purpleAccent, Colors.deepPurple],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.deepPurple.withOpacity(0.3),
-                          spreadRadius: 2,
-                          blurRadius: 8,
-                          offset: const Offset(2, 4),
-                        ),
-                      ],
                     ),
-                    padding: const EdgeInsets.all(12),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Hero(
-                          tag: alumni.name,
-                          child: CircleAvatar(
-                            radius: 40,
-                            backgroundImage: CachedNetworkImageProvider(alumni.imageUrl),
-                            // While loading, show a shimmer effect:
-                            child: CachedNetworkImage(
-                              imageUrl: alumni.imageUrl,
-                              placeholder: (context, url) => Shimmer.fromColors(
-                                baseColor: Colors.grey.shade300,
-                                highlightColor: Colors.grey.shade100,
-                                child: Container(color: Colors.grey),
-                              ),
-                              errorWidget: (context, url, error) => const Icon(Icons.error),
-                              fit: BoxFit.cover,
+                    elevation: 8,
+                    shadowColor: Colors.black.withOpacity(0.1),
+                    color: Colors.white,
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Hero(
+                            tag: alumni.name,
+                            child: CircleAvatar(
+                              radius: 40,
+                              backgroundImage: AssetImage(alumni.imageUrl),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                        alumni.name.text.white.bold.lg.makeCentered(),
-                        "Batch: ${alumni.batch}".text.white.makeCentered(),
-                        alumni.profession.text.white.italic.makeCentered(),
-                        const SizedBox(height: 8),
-                        const SpinKitFadingCircle(color: Colors.white, size: 20.0),
-                      ],
+                          const SizedBox(height: 10),
+                          alumni.name.text.black.bold.lg.makeCentered(),
+                          "Batch: ${alumni.batch}".text.black.makeCentered(),
+                          alumni.profession.text.black.italic.makeCentered(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -269,37 +256,57 @@ class PreviousStudentConnection extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            spreadRadius: 5,
+            offset: Offset(0, -5),
+          ),
+        ],
       ),
-      child: SingleChildScrollView(
-        child: VStack(
-          [
-            Center(
-              child: Hero(
-                tag: alumni.name,
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundImage: CachedNetworkImageProvider(alumni.imageUrl),
-                ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Hero(
+            tag: alumni.name,
+            child: CircleAvatar(
+              radius: 60,
+              backgroundImage: AssetImage(alumni.imageUrl),
+            ),
+          ),
+          20.heightBox,
+          "Name: ${alumni.name}".text.xl.bold.black.make(),
+          "Batch: ${alumni.batch}".text.lg.black.make(),
+          "Profession: ${alumni.profession}".text.lg.black.make(),
+          "Email: ${alumni.email}".text.lg.black.make(),
+          "Phone: ${alumni.phone}".text.lg.black.make(),
+          "Location: ${alumni.location}".text.lg.black.make(),
+          "Company: ${alumni.company}".text.lg.black.make(),
+          "Degree: ${alumni.degree}".text.lg.black.make(),
+          "LinkedIn: ${alumni.linkedinProfile}".text.lg.black.make(),
+          "Skills: ${alumni.skills}".text.lg.black.make(),
+          "Hobbies: ${alumni.hobbies}".text.lg.black.make(),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              // Connect button logic
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFF00BFFF),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
-            20.heightBox,
-            "Name: ${alumni.name}".text.xl.bold.make(),
-            "Batch: ${alumni.batch}".text.lg.make(),
-            "Profession: ${alumni.profession}".text.lg.make(),
-            "Email: ${alumni.email}".text.lg.make(),
-            "Phone: ${alumni.phone}".text.lg.make(),
-            "Location: ${alumni.location}".text.lg.make(),
-            "Company: ${alumni.company}".text.lg.make(),
-            "Degree: ${alumni.degree}".text.lg.make(),
-            "LinkedIn: ${alumni.linkedinProfile}".text.lg.make(),
-            "Skills: ${alumni.skills}".text.lg.make(),
-            "Hobbies: ${alumni.hobbies}".text.lg.make(),
-          ],
-          crossAlignment: CrossAxisAlignment.start,
-        ),
+            child: const Text(
+              'Connect',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+          ),
+        ],
       ),
     );
   }

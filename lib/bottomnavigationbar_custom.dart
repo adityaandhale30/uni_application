@@ -64,15 +64,12 @@ class BottomnavigationbarCustom extends StatelessWidget {
               "assets/harli.jpg",
             ),
           ),
-          icon: Container(
-            clipBehavior: Clip.antiAlias,
-            height: 45,
-            width: 45,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              //color: Colors.green,
-            ),
-          ),
+          icon: const CircleAvatar(
+    backgroundColor: Colors.grey,
+    backgroundImage: AssetImage(
+    "assets/harli.jpg",
+    ),
+    ),
         ),
       ],
     );

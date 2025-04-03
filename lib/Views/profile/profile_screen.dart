@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../homescreen/pdfViwer_custom.dart';
 
 class StudentProfilePage extends StatelessWidget {
   const StudentProfilePage({super.key});
@@ -145,9 +149,11 @@ class StudentProfilePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => PdfviewerCustom());
+                  },
                   icon: const Icon(Icons.edit),
-                  label: const Text("Edit Profile"),
+                  label: const Text("Resume"),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.teal,
                     shape: RoundedRectangleBorder(

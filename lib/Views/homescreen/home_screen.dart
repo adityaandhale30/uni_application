@@ -6,6 +6,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import '../../Models/home_tab_model.dart';
+import 'carouselDetail.dart';
 import 'jobListPage.dart';
 import 'pdfViwer_custom.dart';
 
@@ -129,59 +130,65 @@ class _HomeScreenState extends State<HomeScreen> {
       items: carouselItems.map((item) {
         return Builder(
           builder: (BuildContext context) {
-            return Container(
-              height: 200,
-              width: double.infinity,
-              //  margin: const EdgeInsets.symmetric(horizontal: 8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 8,
-                    spreadRadius: 2,
-                    offset: Offset(0, 4),
+            return GestureDetector(
+              onTap: () {
+                // Navigate to the detail page when an item is tapped
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ItemDetailPage(item: item),
                   ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Container(
-                      height: 200,
-                      width: double.infinity,
-                      child: Image.asset(
+                );
+              },
+              child: Container(
+                height: 200,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 8,
+                      spreadRadius: 2,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Image.asset(
                         item['imagePath']!,
                         fit: BoxFit.fill,
                       ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                          colors: [
-                            Colors.black.withOpacity(0.6),
-                            Colors.transparent,
-                          ],
+                      Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              Colors.black.withOpacity(0.6),
+                              Colors.transparent,
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      bottom: 20,
-                      left: 20,
-                      child: Text(
-                        item['title']!,
-                        style: GoogleFonts.roboto(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                      Positioned(
+                        bottom: 20,
+                        left: 20,
+                        child: Text(
+                          item['title']!,
+                          style: GoogleFonts.roboto(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );
@@ -190,6 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
       }).toList(),
     );
   }
+
 
   Widget _buildIndicatorDots() {
     return Row(
@@ -269,7 +277,7 @@ class HomeTabCard extends StatelessWidget {
               name,
               textAlign: TextAlign.center,
               style: GoogleFonts.roboto(
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: Color.fromRGBO(25, 33, 38, 1),
               ),

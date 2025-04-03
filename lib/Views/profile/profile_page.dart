@@ -24,7 +24,7 @@ class ProfilePage extends StatefulWidget {
 
 class _MainProfilePage extends State<ProfilePage> {
   final List<Widget> _profilePages = [
-    const Editprofilepage(),
+    PdfviewerCustom(),
     const VirtualCardPage(),
     const AboutUsPage(),
     const TermsConditionsPage(),
@@ -34,12 +34,12 @@ class _MainProfilePage extends State<ProfilePage> {
 
   Widget profilePage() {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(() => PdfviewerCustom());
-        },
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Get.to(() => PdfviewerCustom());
+      //   },
+      //   child: const Icon(Icons.add),
+      // ),
       backgroundColor: const Color.fromRGBO(245, 249, 255, 1),
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
@@ -103,7 +103,7 @@ class _MainProfilePage extends State<ProfilePage> {
               ),
             ),
             const SizedBox(height: 40),
-            createContainer(Icons.person, "Edit Profile", 0),
+            createContainer(Icons.person, "Resume", 0),
             const SizedBox(height: 15),
             createContainer(Icons.account_box_rounded, "Virtual Id", 1),
             const SizedBox(height: 15),
