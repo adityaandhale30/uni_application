@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:uni_app/Views/profile/profile_page.dart';
 import 'package:uni_app/Views/profile/profile_screen.dart';
 
 import 'Views/alumni/alumni.dart';
@@ -22,11 +23,8 @@ class BottomnavigationbarCustom extends StatelessWidget {
         const HomeScreen(),
         const AnalyticsScreen(),
         Container(),
-        
         PreviousStudentConnection(),
-        StudentProfilePage(),
-         
- 
+        ProfilePage(),
       ],
       items: [
         PersistentBottomNavBarItem(
@@ -76,7 +74,6 @@ class BottomnavigationbarCustom extends StatelessWidget {
               shape: BoxShape.circle,
               //color: Colors.green,
             ),
-          
           ),
         ),
       ],

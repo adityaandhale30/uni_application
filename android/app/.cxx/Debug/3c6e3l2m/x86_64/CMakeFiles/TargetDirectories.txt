@@ -1,0 +1,2 @@
+C:/Users/ganut/OneDrive/Documents/BE Proj/Trial/Main/uni_application/android/app/.cxx/Debug/3c6e3l2m/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/ganut/OneDrive/Documents/BE Proj/Trial/Main/uni_application/android/app/.cxx/Debug/3c6e3l2m/x86_64/CMakeFiles/rebuild_cache.dir

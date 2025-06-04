@@ -8,37 +8,31 @@ class PreviousStudentConnection extends StatelessWidget {
       'name': 'Aditya Andhale',
       'batch': '2020',
       'profession': 'Mobile Developer',
-      'imageUrl': 'https://via.placeholder.com/150',
     },
     {
-      'name': 'Jane Doe',
+      'name': 'Yash Thakare',
       'batch': '2018',
-      'profession': 'Architect',
-      'imageUrl': 'https://via.placeholder.com/150',
+      'profession': 'Cloud Engineer',
     },
     {
-      'name': 'John Smith',
+      'name': 'Naresh Shewale',
       'batch': '2019',
-      'profession': 'Doctor',
-      'imageUrl': 'https://via.placeholder.com/150',
+      'profession': 'Cloud Engineer',
     },
     {
-      'name': 'Alice Johnson',
+      'name': 'Akash Thapa',
       'batch': '2021',
-      'profession': 'Artist',
-      'imageUrl': 'https://via.placeholder.com/150',
+      'profession': 'Civil Engineer',
     },
     {
       'name': 'Rajesh Kumar',
       'batch': '2017',
       'profession': 'Civil Engineer',
-      'imageUrl': 'https://via.placeholder.com/150',
     },
     {
-      'name': 'Emily Davis',
+      'name': 'Umesh Patil',
       'batch': '2020',
-      'profession': 'Teacher',
-      'imageUrl': 'https://via.placeholder.com/150',
+      'profession': 'Pri. Teacher',
     },
   ];
 
@@ -47,62 +41,57 @@ class PreviousStudentConnection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(245, 249, 255, 1),
       appBar: AppBar(
-        title: const Text('Previous Student Connection'),
-        backgroundColor: Colors.teal,
+        title: const Text(
+          'Alumni Network',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.blue,
+        elevation: 5,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search, color: Colors.white),
+            onPressed: () {
+              // Implement search functionality here
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 3 / 4,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+            childAspectRatio: 0.8,
           ),
           itemCount: alumniList.length,
           itemBuilder: (context, index) {
             final alumni = alumniList[index];
             return GestureDetector(
               onTap: () {
-                // Show details in a popup
-                Get.defaultDialog(
-                  title: alumni['name']!,
-                  content: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CircleAvatar(
-                        radius: 40,
-                        backgroundImage: NetworkImage(alumni['imageUrl']!),
-                      ),
-                      const SizedBox(height: 10),
-                      Text('Batch: ${alumni['batch']}'),
-                      Text('Profession: ${alumni['profession']}'),
-                    ],
-                  ),
-                  textCancel: 'Close',
-                );
+                Get.to(() => AlumniDetailPage(alumni: alumni));
               },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: const Offset(2, 2),
-                    ),
-                  ],
+              child: Card(
+                elevation: 4,
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
                 ),
-                padding: const EdgeInsets.all(10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundImage: NetworkImage(alumni['imageUrl']!),
+                    Hero(
+                      tag: alumni['name']!,
+                      child: CircleAvatar(
+                        radius: 45,
+                        backgroundImage: NetworkImage(alumni['imageUrl'] ??
+                            "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"),
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Text(
@@ -138,3 +127,187 @@ class PreviousStudentConnection extends StatelessWidget {
     );
   }
 }
+
+// Alumni Detail Page for better user experience
+class AlumniDetailPage extends StatelessWidget {
+  final Map<String, String> alumni;
+  const AlumniDetailPage({super.key, required this.alumni});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar:
+          AppBar(title: Text(alumni['name']!), backgroundColor: Colors.teal),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Hero(
+              tag: alumni['name']!,
+              child: CircleAvatar(
+                radius: 60,
+                backgroundImage: NetworkImage(alumni['imageUrl']!),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              alumni['name']!,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Batch: ${alumni['batch']}',
+              style: const TextStyle(fontSize: 18, color: Colors.grey),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              alumni['profession']!,
+              style: const TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+//
+// class PreviousStudentConnection extends StatelessWidget {
+//   // Example data for alumni profiles
+//   final List<Map<String, String>> alumniList = [
+//     {
+//       'name': 'Aditya Andhale',
+//       'batch': '2020',
+//       'profession': 'Mobile Developer',
+//       'imageUrl': 'https://via.placeholder.com/150',
+//     },
+//     {
+//       'name': 'Jane Doe',
+//       'batch': '2018',
+//       'profession': 'Architect',
+//       'imageUrl': 'https://via.placeholder.com/150',
+//     },
+//     {
+//       'name': 'John Smith',
+//       'batch': '2019',
+//       'profession': 'Doctor',
+//       'imageUrl': 'https://via.placeholder.com/150',
+//     },
+//     {
+//       'name': 'Alice Johnson',
+//       'batch': '2021',
+//       'profession': 'Artist',
+//       'imageUrl': 'https://via.placeholder.com/150',
+//     },
+//     {
+//       'name': 'Rajesh Kumar',
+//       'batch': '2017',
+//       'profession': 'Civil Engineer',
+//       'imageUrl': 'https://via.placeholder.com/150',
+//     },
+//     {
+//       'name': 'Emily Davis',
+//       'batch': '2020',
+//       'profession': 'Teacher',
+//       'imageUrl': 'https://via.placeholder.com/150',
+//     },
+//   ];
+//
+//   PreviousStudentConnection({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Previous Student Connection'),
+//         backgroundColor: Colors.teal,
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(10.0),
+//         child: GridView.builder(
+//           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//             crossAxisCount: 2,
+//             crossAxisSpacing: 10,
+//             mainAxisSpacing: 10,
+//             childAspectRatio: 3 / 4,
+//           ),
+//           itemCount: alumniList.length,
+//           itemBuilder: (context, index) {
+//             final alumni = alumniList[index];
+//             return GestureDetector(
+//               onTap: () {
+//                 // Show details in a popup
+//                 Get.defaultDialog(
+//                   title: alumni['name']!,
+//                   content: Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       CircleAvatar(
+//                         radius: 40,
+//                         backgroundImage: NetworkImage(alumni['imageUrl']!),
+//                       ),
+//                       const SizedBox(height: 10),
+//                       Text('Batch: ${alumni['batch']}'),
+//                       Text('Profession: ${alumni['profession']}'),
+//                     ],
+//                   ),
+//                   textCancel: 'Close',
+//                 );
+//               },
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                   color: Colors.white,
+//                   borderRadius: BorderRadius.circular(12),
+//                   boxShadow: [
+//                     BoxShadow(
+//                       color: Colors.grey.withOpacity(0.3),
+//                       spreadRadius: 2,
+//                       blurRadius: 5,
+//                       offset: const Offset(2, 2),
+//                     ),
+//                   ],
+//                 ),
+//                 padding: const EdgeInsets.all(10),
+//                 child: Column(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     CircleAvatar(
+//                       radius: 40,
+//                       backgroundImage: NetworkImage(alumni['imageUrl']!),
+//                     ),
+//                     const SizedBox(height: 10),
+//                     Text(
+//                       alumni['name']!,
+//                       style: const TextStyle(
+//                         fontWeight: FontWeight.bold,
+//                         fontSize: 16,
+//                       ),
+//                       textAlign: TextAlign.center,
+//                     ),
+//                     Text(
+//                       'Batch: ${alumni['batch']}',
+//                       style: const TextStyle(
+//                         color: Colors.grey,
+//                         fontSize: 14,
+//                       ),
+//                     ),
+//                     Text(
+//                       alumni['profession']!,
+//                       style: const TextStyle(
+//                         color: Colors.black87,
+//                         fontStyle: FontStyle.italic,
+//                       ),
+//                       textAlign: TextAlign.center,
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }

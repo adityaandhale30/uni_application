@@ -71,9 +71,15 @@ class AnalyticsScreen extends StatelessWidget {
     ];
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('University Analytics'),
-        backgroundColor: Colors.teal,
+        title: const Text(
+          'University Analytics',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -182,11 +188,9 @@ class AnalyticsScreen extends StatelessWidget {
                     LineChartBarData(
                       spots: lineSpots,
                       isCurved: true,
-                   
                       barWidth: 4,
                       belowBarData: BarAreaData(
                         show: true,
-                      
                       ),
                     ),
                   ],
